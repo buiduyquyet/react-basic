@@ -1,63 +1,34 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
+import AddComponent from "./AddComponent";
 
 class MyComponent extends React.Component{
 
     state = {
-        firstName : '',
-        lastName: '',
-        // channel: "quyetdaica09",
+        jobs: [
+            {id: 'jb1', title: 'Coder', salary: '500'},
+            {id: 'jb2', title: 'Programer', salary: '700'},
+            {id: 'jb3', title: 'Developer', salary: '1000'},
+        ]
 
     }
 
-    handleOnChange = (event) =>{
-        this.setState({
-            firstName: event.target.value
-        })
-    }
-
-    handleOnChangeFirst = (event) =>{
-        this.setState({
-            firstName: event.target.value
-        })
-    }
-
-    handleOnChangeLast = (event) =>{
-        this.setState({
-            lastName: event.target.value
-        })
-    }
-
-    handleSubmitForm = () =>{
-        console.log(this.state)
-    }
-
-    hanđleOnClickMe = () =>{
+    handleOnClickMe = () =>{
         alert("This is Quyet dai ca...!");
         console.log("This is Quyet dai ca")
     }
 
+    addJob = (job) =>{
+        console.log("Check job form MyCom: ", job)
+        this.setState({
+            jobs: [...this.state.jobs, job]
+        })
+    }
+
     render(){
         return(
-            <>
-                <form>
-                    <label htmlFor="">First Name: </label>
-                    <input type="text"
-                         value={this.state.firstName}
-                        onChange = {(event) => this.handleOnChangeFirst(event)}   
-                    />
-                    <br/>
-                    <label htmlFor="">Last Name: </label>
-                    <input type="text"
-                        value={this.state.lastName}
-                        onChange = {(event) => this.handleOnChangeLast(event)}
-                    />
-                    <br/>
-                    <button type="button" onClick={() => this.handleSubmitForm()}>Submit</button>
-                </form>
-                
-                
-                
+            <>  
+                <AddComponent addJob={this.addJob}/>
                 {/* <div>
                     <input type="text" value={this.state.name} 
                         onChange = {(event) => this.handleOnChange(event)}
@@ -72,7 +43,7 @@ class MyComponent extends React.Component{
                 <div>
                     <button onClick={() => this.hanđleOnClickMe()}>Click Me</button>
                 </div> */}
-                <ChildComponent name={"Child 01"} age={'22'}/>
+                <ChildComponent name={this.state.firstName} age={'22'} arrJob={this.state.jobs}/>
             </>
         )
     }
