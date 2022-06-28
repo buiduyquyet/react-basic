@@ -44,7 +44,7 @@ export default class AddComponent extends Component {
   render() {
     return (
       <>
-              <form>
+            <form>
                     <label htmlFor="">Job's Title: </label>
                     <input type="text"
                          value={this.state.title}

@@ -25,10 +25,18 @@ class MyComponent extends React.Component{
         })
     }
 
+    deleteJob = (job) =>{
+        let currentJobs = this.state.jobs
+        currentJobs = currentJobs.filter(item => item.id !==job.id)
+        this.setState({
+            jobs: currentJobs
+        })
+    }
+
     render(){
         return(
             <>  
-                <AddComponent addJob={this.addJob}/>
+                <AddComponent addJob={this.addJob} />
                 {/* <div>
                     <input type="text" value={this.state.name} 
                         onChange = {(event) => this.handleOnChange(event)}
@@ -43,7 +51,7 @@ class MyComponent extends React.Component{
                 <div>
                     <button onClick={() => this.hanđleOnClickMe()}>Click Me</button>
                 </div> */}
-                <ChildComponent name={this.state.firstName} age={'22'} arrJob={this.state.jobs}/>
+                <ChildComponent name={this.state.firstName} age={'22'} arrJob={this.state.jobs} deleteJob={this.deleteJob}/>
             </>
         )
     }

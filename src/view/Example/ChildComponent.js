@@ -12,6 +12,10 @@ export default class ChildComponent extends Component {
     })
   }
 
+  handleDeleteItem = (job) =>{
+    this.props.deleteJob(job)
+  }
+
   render() {
     let { arrJob } = this.props;
     let { showJob } = this.state;
@@ -29,7 +33,7 @@ export default class ChildComponent extends Component {
                 arrJob.map((item, index) => {
                   return (
                     <div key={item.id}>
-                      {item.title} - {item.salary}$
+                      {item.title} - {item.salary}$ <></> <span onClick={() => this.handleDeleteItem(item)}>x</span>
                     </div>
                   )
                 })
